@@ -4,6 +4,7 @@ class CreateMoviesTable < ActiveRecord::Migration[6.0]
     t.string :title
     t.string :director
     t.integer :year
+    t.string :format
     end
   end
 end

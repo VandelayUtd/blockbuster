@@ -12,13 +12,6 @@
 
 ActiveRecord::Schema.define(version: 2021_07_26_215251) do
 
-  create_table "formats", force: :cascade do |t|
-    t.string "dvd"
-    t.string "vhs"
-    t.string "bluray"
-    t.integer "quantity"
-  end
-
   create_table "member_movies", force: :cascade do |t|
     t.integer "movie_id"
     t.integer "member_id"
@@ -30,15 +23,11 @@ ActiveRecord::Schema.define(version: 2021_07_26_215251) do
     t.string "password_digest"
   end
 
-  create_table "movie_formats", force: :cascade do |t|
-    t.integer "movie_id"
-    t.integer "format_id"
-  end
-
   create_table "movies", force: :cascade do |t|
     t.string "title"
     t.string "director"
     t.integer "year"
+    t.string "format"
   end
 
 end

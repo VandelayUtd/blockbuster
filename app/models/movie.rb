@@ -1,6 +1,26 @@
 class Movie < ActiveRecord::Base
     has_many :member_movies
-    has_many :movie_formats
     has_many :members, through: :member_movies
-    has_many :formats, through: :movie_formats
+
+    def slug 
+        self.title.gsub(" ", "-")
+    end
+
+    def self.find_by_slug(slug)
+        self.all.find{|movie| movie.slug == slug}
+    end
+
+    def self.unique_movies 
+        self.all.uniq {|m| m[:title]}
+    end
+
+    def vhs_count
+        Movie.all.count{|movie| movie.title == self.title && movie.format == "VHS"}
+    end
+
+    def dvd_count 
+        Movie.all.count{|movie| movie.title == self.title && movie.format == "DVD"}
+    end
+
+    
 end

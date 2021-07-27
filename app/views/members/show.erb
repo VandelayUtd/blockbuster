@@ -1,0 +1,10 @@
+<h1>Welcome <%= @member.name %></h1>
+
+<h3>You have <% @member.movies.count %> currently rented</h3>
+<ul>
+    <%@member.movies.each do |movie|%>
+    <li><%= movie.title %> Directed by <%= movie.director %> <br> year: <%= movie.year %> format: <%= movie.format %>
+    <% end %>  
+    </li>
+</ul>
+<a href="/movies">Rent More Movies</a>
