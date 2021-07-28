@@ -1,7 +1,8 @@
-class Member < ActiveRecord::Base 
+class User < ActiveRecord::Base 
     has_secure_password
-    has_many :member_movies    
-    has_many :movies, through: :member_movies
+    validates_uniqueness_of :username, :message=>"This username is already taken. Please try another one"
+    has_many :user_movies    
+    has_many :movies, through: :user_movies
 
     def vhs_count
         self.movies.count {|movie| movie.format == "VHS"}
@@ -17,6 +18,6 @@ class Member < ActiveRecord::Base
 
     def self.find_by_slug(slug)
         
-        Member.all.find {|member| member.slug == slug}
+        User.all.find {|user| user.slug == slug}
     end
 end

@@ -3,7 +3,7 @@ class MovieController < ApplicationController
     get '/movies' do
         
         if logged_in?
-        @member = current_user
+        @user = current_user
         @movies = Movie.unique_movies
         erb :"movies/index"
         else   

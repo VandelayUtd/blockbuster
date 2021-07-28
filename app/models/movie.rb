@@ -1,6 +1,6 @@
 class Movie < ActiveRecord::Base
-    has_many :member_movies
-    has_many :members, through: :member_movies
+    has_many :user_movies
+    has_many :users, through: :user_movies
 
     def slug 
         self.title.gsub(" ", "-")

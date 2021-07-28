@@ -12,22 +12,22 @@
 
 ActiveRecord::Schema.define(version: 2021_07_26_215251) do
 
-  create_table "member_movies", force: :cascade do |t|
-    t.integer "movie_id"
-    t.integer "member_id"
-  end
-
-  create_table "members", force: :cascade do |t|
-    t.string "name"
-    t.string "username"
-    t.string "password_digest"
-  end
-
   create_table "movies", force: :cascade do |t|
     t.string "title"
     t.string "director"
     t.integer "year"
     t.string "format"
+  end
+
+  create_table "user_movies", force: :cascade do |t|
+    t.integer "movie_id"
+    t.integer "user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "username"
+    t.string "password_digest"
   end
 
 end

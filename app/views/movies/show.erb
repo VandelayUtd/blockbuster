@@ -8,7 +8,7 @@
 
 </ul>
 
-<form method='POST' action="/members">
-<input type="checkbox" name="member[movie_id][]" id="movie_<%= @movie.id %>" value="<%=@movie.id%>">
+<form method='POST' action="/users">
+<input type="checkbox" name="user[movie_id][]" id="movie_<%= @movie.id %>" value="<%=@movie.id%>">
 <input type='submit' value='submit'>
 </form>
