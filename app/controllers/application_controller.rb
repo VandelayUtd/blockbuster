@@ -4,10 +4,13 @@ class ApplicationController < Sinatra::Base
   register Sinatra::ActiveRecordExtension
 
   configure do
-    enable :sessions
     set :public_folder, 'public'
     set :views, 'app/views'
+    use Rack::Session::Cookie, :key => 'rack.session',
+    :path => '/',
+    :secret => 'your_secret'
   end
+
 
   get "/" do
     erb :index

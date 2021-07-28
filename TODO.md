@@ -1,4 +1,4 @@
-Sprint 1 
+
 Member Functionality 
     /register
     /login

@@ -12,15 +12,14 @@ class MemberController < ApplicationController
     get '/login' do 
         erb :"members/login"
     end
-    
+   
     get '/members/:slug' do 
-        @member = Member.find_by_slug(params[:slug])
-        erb :"members/show"
+            @member = Member.find_by_slug(params[:slug])
+            erb :"members/show"
     end
-
+    
     post '/login' do 
         @member = Member.find_by(username: params[:member][:username])
-        
         if @member && @member.authenticate(params[:member][:password])
                 session[:user_id] = @member.id
                 redirect to "/members/#{@member.slug}"
@@ -29,6 +28,15 @@ class MemberController < ApplicationController
         end
     end
 
-   
+    post '/members' do
+        @member = Member.find_by(id: session[:user_id])
+        movie = Movie.find_by(id: params[:member][:movie_ids])
+        @member.movies << movie
+        
+        
+        redirect to "/members/#{@member.slug}"
+    end     
+    
+
 
 end

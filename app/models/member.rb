@@ -19,5 +19,4 @@ class Member < ActiveRecord::Base
         
         Member.all.find {|member| member.slug == slug}
     end
-
 end
