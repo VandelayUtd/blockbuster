@@ -2,7 +2,7 @@ require 'rack-flash'
 
 class UserController < ApplicationController 
     use Rack::Flash
-
+    
     get '/users/:slug' do
         if logged_in?
             @user = User.find_by_slug(params[:slug])
@@ -58,6 +58,9 @@ class UserController < ApplicationController
     post '/users' do
         @user = User.find_by(id: session[:user_id])
         movie = Movie.find_by(id: params[:user][:movie_id])
+       
+        # @dvd_count = movie.dvd_count
+        # @vhs_count = movie.vhs_count
         @user.movies << movie
         redirect to "/users/#{@user.slug}"
     end

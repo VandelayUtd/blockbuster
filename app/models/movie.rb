@@ -1,6 +1,5 @@
 class Movie < ActiveRecord::Base
-    has_many :user_movies
-    has_many :users, through: :user_movies
+    belongs_to :user
 
     def slug 
         self.title.gsub(" ", "-")
@@ -10,16 +9,34 @@ class Movie < ActiveRecord::Base
         self.all.find{|movie| movie.slug == slug}
     end
 
-    def self.unique_movies 
-        self.all.uniq {|m| m[:title]}
+    def self.instock 
+        Movie.all.where(user_id: nil)
     end
 
-    def vhs_count
-        Movie.all.count{|movie| movie.title == self.title && movie.format == "VHS"}
+    # def self.rented
+    #     Movie.all.where(user_id: [1..99])
+    # end
+
+    def self.list
+        Movie.instock.uniq{|movie| movie.title}
     end
+
+
+    def vhs_count 
+        Movie.instock.count {|movie| movie.format == "VHS" && movie.title == self.title}
+    end
+
 
     def dvd_count 
-        Movie.all.count{|movie| movie.title == self.title && movie.format == "DVD"}
+        Movie.instock.count {|movie| movie.format == "DVD" && movie.title == self.title}
+    end
+
+    def self.vhs_instock 
+        Movie.instock.where(format: "VHS")
+    end
+
+    def self.dvd_instock
+        Movie.instock.where(format: "DVD")
     end
 
     

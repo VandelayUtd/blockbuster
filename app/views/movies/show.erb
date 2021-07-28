@@ -8,7 +8,10 @@
 
 </ul>
 
+<h3>VHS</h3> 
 <form method='POST' action="/users">
-<input type="checkbox" name="user[movie_id][]" id="movie_<%= @movie.id %>" value="<%=@movie.id%>">
+<input type="checkbox" name="user[movie_id][]" id="movie_<%= @vhs.id %>" value="<%=@vhs.id%>"><br>
+<h3>DVD</h3>
+<input type="checkbox" name="user[movie_id][]" id="movie_<%= @dvd.id %>" value="<%=@dvd.id%>"> <br>
 <input type='submit' value='submit'>
 </form>

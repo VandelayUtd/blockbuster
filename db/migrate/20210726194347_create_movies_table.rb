@@ -5,6 +5,7 @@ class CreateMoviesTable < ActiveRecord::Migration[6.0]
     t.string :director
     t.integer :year
     t.string :format
+    t.string :user_id
     end
   end
 end
