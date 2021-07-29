@@ -1,6 +1,6 @@
 class Movie < ActiveRecord::Base
     belongs_to :user
-
+    has_many :reviews
     def slug 
         self.title.gsub(" ", "-")
     end
@@ -31,13 +31,4 @@ class Movie < ActiveRecord::Base
         Movie.instock.count {|movie| movie.format == "DVD" && movie.title == self.title}
     end
 
-    def self.vhs_instock 
-        Movie.instock.where(format: "VHS")
-    end
-
-    def self.dvd_instock
-        Movie.instock.where(format: "DVD")
-    end
-
-    
 end

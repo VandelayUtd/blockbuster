@@ -1,7 +1,11 @@
 class User < ActiveRecord::Base 
     has_secure_password
+    # validates 
     validates_uniqueness_of :username, :message=>"This username is already taken. Please try another one"
     has_many :movies
+    has_many :reviews 
+    # has_many :reviews, through: :movie_reviews
+    
 
     def vhs_count
         self.movies.count {|movie| movie.format == "VHS"}

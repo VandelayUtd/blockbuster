@@ -1,17 +1,13 @@
-<h1><%= @movie.title %></h1>
+<h1>Welcome <%= @user.name %></h1>
+
+<h3>You have <% @user.movies.count %> currently rented</h3>
 <ul>
-    <li>Directed by <%= @movie.director %></li>
-    <li>year: <%= @movie.year %></li>
-    <li>formats:</li>
-    <li>VHS quantity available: <%= @movie.vhs_count %></li>
-    <li>DVD quantity available: <%= @movie.dvd_count %></li>
+    <%@user.movies.each do |movie|%>
+    <li><a href="/movies/<%=movie.slug%>"><%= movie.title %></a> <br> Directed by <%= movie.director %> <br> year: <%= movie.year %> format: <%= movie.format %> <br>
+    <% end %>  
+    </li>
+</ul> <br>
+<a href="/movies">Rent More Movies</a> <br><br>
+<a href='/return'>Return Movies</a> <br><br>
 
-</ul>
-
-<h3>VHS</h3> 
-<form method='POST' action="/users">
-<input type="checkbox" name="user[movie_id][]" id="movie_<%= @vhs.id %>" value="<%=@vhs.id%>"><br>
-<h3>DVD</h3>
-<input type="checkbox" name="user[movie_id][]" id="movie_<%= @dvd.id %>" value="<%=@dvd.id%>"> <br>
-<input type='submit' value='submit'>
-</form>
+<a href='/logout'>logout</a>

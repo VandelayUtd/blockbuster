@@ -1,0 +1,19 @@
+<h1><%= @movie.title %></h1>
+<ul>
+    <li>Directed by <%= @movie.director %></li>
+    <li>year: <%= @movie.year %></li>
+    <li>formats:</li>
+    <li>VHS quantity available: <%= @movie.vhs_count %></li>
+    <li>DVD quantity available: <%= @movie.dvd_count %></li>
+
+</ul>
+
+<h3>VHS</h3> 
+<form method='POST' action="/movies">
+<input type="checkbox" name="user[movie_ids][]" id="movie_<%= @vhs.id %>" value="<%=@vhs.id%>"><br>
+<h3>DVD</h3>
+<input type="checkbox" name="user[movie_ids][]" id="movie_<%= @dvd.id %>" value="<%=@dvd.id%>"> <br>
+<input type='submit' value='submit'>
+</form>
+
+<a href="/movies">Other Movies</a>

@@ -3,14 +3,6 @@ require 'rack-flash'
 class UserController < ApplicationController 
     use Rack::Flash
     
-    get '/users/:slug' do
-        if logged_in?
-            @user = User.find_by_slug(params[:slug])
-            erb :"users/show"
-        else 
-            redirect to "/login"
-        end
-    end
     
     get '/register' do
         if logged_in? 
@@ -25,9 +17,13 @@ class UserController < ApplicationController
         if logged_in?
             redirect to "/users/#{current_user.slug}"
         else
-            @user = User.create(params[:user])
+            @user = User.new(params[:user])
+            if @user.save 
             session[:user_id] = @user.id
             redirect to "/users/#{@user.slug}"
+            else  
+            redirect to "/register"
+            end
         end
     end
 
@@ -55,15 +51,7 @@ class UserController < ApplicationController
         end
     end
 
-    post '/users' do
-        @user = User.find_by(id: session[:user_id])
-        movie = Movie.find_by(id: params[:user][:movie_id])
-       
-        # @dvd_count = movie.dvd_count
-        # @vhs_count = movie.vhs_count
-        @user.movies << movie
-        redirect to "/users/#{@user.slug}"
-    end
+ 
 
     get '/logout' do 
     if logged_in?
@@ -74,6 +62,14 @@ class UserController < ApplicationController
         end
     end
     
+    get '/users/:slug' do
+        if logged_in?
+            @user = User.find_by_slug(params[:slug])
+            erb :"movies/show"
+        else 
+            redirect to "/login"
+        end
+    end
 
 
 end
