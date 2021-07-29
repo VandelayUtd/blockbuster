@@ -6,5 +6,6 @@ end
 use Rack::MethodOverride
 use UserController
 use MovieController
+use ReviewController
 
 run ApplicationController
