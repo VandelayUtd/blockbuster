@@ -1,5 +1,6 @@
 <% @user.reviews.each do |review| %>
     <%= review.rating %>
     <%= review.comment %>
-<% end %>
-<a href="/reviews/<%=current_user.slug%>/new">Leave a Review</a>
+<%end%>
+
+<a href="/users/<%=@user.slug%>">Your Movies</a>
