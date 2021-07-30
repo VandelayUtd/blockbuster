@@ -1,16 +1,21 @@
 class Movie < ActiveRecord::Base
-    belongs_to :user
+    has_many :user_movies
+    has_many :users, through: :user_movies
     has_many :reviews
     def slug 
         self.title.gsub(" ", "-")
     end
 
     def self.find_by_slug(slug)
-        self.all.find{|movie| movie.slug == slug}
+        Movie.all.find{|movie| movie.slug == slug}
+    end
+
+    def out_of_stock?
+        self.inventory == 0 
     end
 
     def self.instock 
-        Movie.all.where(user_id: nil)
+        Movie.all.select{|movie| movie.inventory > 0}
     end
 
     # def self.rented

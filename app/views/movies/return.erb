@@ -1,7 +1,7 @@
 <form method='POST' action='/return'>
 <input type='hidden' id='hidden' name='_method' value='PATCH'>
 <% @user.movies.each do |movie|%>
-<label><%=movie.title%></label>
+<label><%=movie.title%> Format: <%= movie.format %></label>
 <input type='checkbox' name='user[movie_ids][]' id='movie_<%=movie.id%>' value='<%=movie.id%>'> <br>
 <%end%>
 <input type='submit' value='submit'>
