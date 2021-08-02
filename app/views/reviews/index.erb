@@ -1,4 +1,4 @@
-<% @user.reviews.uniq. each do |review| %>
+<% @user.reviews each do |review| %>
     <%= review.rating %>
     <%= review.comment %>
 <%end%>

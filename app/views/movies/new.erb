@@ -17,8 +17,24 @@
 <input type="checkbox" name="user[movie_ids][]" id="movie_<%= @dvd.id %>" value="<%=@dvd.id%>"> <br>
 <% end %>
 <input type='submit' value='submit'>
-</form>
+</form> <br>
 
-<h4><a href="/reviews/<%=@movie.slug%>/new">Reviews</a></h4>
+<h4>Reviews</h4>
+<% Movie.all.each do |movie| %>
+    <% if movie.title == @movie.title %>
+        <% movie.reviews.each do |review| %>
+            <h4><%= review.user.username %></h4>
+            <p>
+               Rating: <%= review.rating %> Stars <br>
+               Review: <%= review.comment %><br>
+               <a href="/reviews/<%=review.id%>/edit">Edit Review</a>
+            </p>    
+            <% end %>
+    <% end %>
+<% end %> <br> <br>
 
-<a href="/movies">Other Movies</a>
+<a href='/reviews/new/<%= @movie.slug %>'>Leave a Review</a><br>
+
+<a href="/movies">Other Movies</a><br>
+
+<a href="/">Homepage</a>

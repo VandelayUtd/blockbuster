@@ -1,0 +1,20 @@
+<form method='POST' action="/reviews/<%=@review.id%>">
+<input type="hidden" id="hidden" name="_method" value="patch">
+<label for="user_comment">Review:</label><br>
+<input type="text" id="user_comment" name="comment" value="<%= @review.comment %>"> <br>
+<label for='rating'>How many gold stars does this movie get?</label> <br>
+<select id="rating" name="rating">
+    <option value="1">One Star</option>
+    <option value="2">Two Star</option>
+    <option value="3">Three Star</option>
+    <option value="4">Four Star</option>
+  </select>
+</form> <br>
+<input type="submit" value="submit">
+
+<form method="POST" action="/reviews/<%=@review.id%>/delete">
+<input type="hidden" id="hidden" name="_method" value="DELETE">
+<input type="submit" value="Delete Review">
+</form>
+
+<a href="/movies/<%= @review.movie.title %>">Cancel</a>
