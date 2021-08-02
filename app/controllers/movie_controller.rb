@@ -13,9 +13,15 @@ class MovieController < ApplicationController
         end
     end
 
-    get"/return" do
+    get "/return" do
         @user = current_user
         erb :"movies/return"    
+    end
+
+    get "/movies/:slug/reviews" do 
+        @movie = Movie.find_by_slug(params[:slug])
+        @user = current_user
+        erb :"movies/movie_reviews"
     end
 
     patch '/return' do
