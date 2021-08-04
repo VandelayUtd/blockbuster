@@ -1,6 +1,6 @@
 <h1>Welcome <%= @user.name %></h1>
 
-<h3>You have <% @user.movies.count %> currently rented</h3>
+<h3>You have <%= @user.movies.count %> movies currently rented</h3>
 <ul>
     <%@user.movies.each do |movie|%>
     <li><a href="/movies/<%=movie.slug%>"><%= movie.title %></a> <br> Directed by <%= movie.director %> <br> year: <%= movie.year %> format: <%= movie.format %> <br>

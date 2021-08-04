@@ -1,3 +1,4 @@
+<h2>Register For an Account Below</h2>
 <form method='POST' action='/register'>
 <label for='user_name'>Name:</label>
 <input type='text' name='user[name]' id='user_name'>
@@ -7,3 +8,9 @@
 <input type='password' name='user[password]' id='password'>
 <input type='submit' value='Signup'>
 </form>
+
+<% if flash[:error] %>
+    <%= flash[:error] %>
+<% end %>
+
+<a href='/'>Return to Home Page</a>

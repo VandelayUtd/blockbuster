@@ -1,11 +1,11 @@
 class User < ActiveRecord::Base 
     has_secure_password
-    # validates 
-    validates_uniqueness_of :username, :message=>"This username is already taken. Please try another one"
+    validates :password_digest, :username, presence: true
+    validates :username, uniqueness: true 
     has_many :user_movies
     has_many :movies, through: :user_movies 
     has_many :reviews 
-    # has_many :reviews, through: :movie_reviews
+    validates_associated :reviews
     
 
     def vhs_count

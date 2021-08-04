@@ -20,6 +20,10 @@
 </form> <br>
 
 <h4>Reviews</h4>
+<% if flash[:error] %>
+   <br> <%= flash[:error] %> <br> <br>
+<% end %>
+
 <% Movie.all.each do |movie| %>
     <% if movie.title == @movie.title %>
         <% movie.reviews.each do |review| %>
@@ -27,7 +31,7 @@
             <p>
                Rating: <%= review.rating %> Stars <br>
                Review: <%= review.comment %><br>
-               <a href="/reviews/<%=review.id%>/edit">Edit Review</a>
+               <a href="/reviews/<%=review.id%>/edit">Edit Review</a> 
             </p>    
             <% end %>
     <% end %>

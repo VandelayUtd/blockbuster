@@ -32,14 +32,20 @@ class ReviewController < ApplicationController
     get '/reviews/:id/edit' do
         if logged_in?
             @review = Review.find_by(id: params[:id])
-            erb :"reviews/edit"
+            movie = @review.movie
+            if @review && @review.user == current_user
+                erb :"reviews/edit"
+            else
+                flash[:error] = "You can't edit another user's review."
+                redirect "/movies/#{movie.slug}"
+            end
         else  
             redirect to "/login"
         end
     end
 
     patch '/reviews/:id' do
-        if logged_in? 
+        if logged_in? &&  
             @review = Review.find_by(id: params[:id])
             @review.comment = params[:comment]
             @review.rating = params[:rating]

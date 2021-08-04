@@ -1,5 +1,13 @@
 <form method='POST' action='/login'>
-<input type='text' name='user[username]' id='name'>
+<label for='username'>Username:</label>
+<input type='text' name='user[username]' id='username'>
+<label for='password'>Password:</label>
 <input type='password' name='user[password]' id='password'>
 <input type='submit' value='login'>
 </form>
+
+<% if flash[:error] %>
+    <%= flash[:error] %>
+<% end %> <br> <br>
+
+<a href='/register'>Register</a>

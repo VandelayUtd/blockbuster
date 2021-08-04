@@ -11,7 +11,6 @@ class ApplicationController < Sinatra::Base
     :secret => 'your_secret'
   end
 
-
   get "/" do
     if logged_in?
       redirect to "/users/#{current_user.slug}"

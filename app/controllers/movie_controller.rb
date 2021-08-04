@@ -1,8 +1,5 @@
 class MovieController < ApplicationController
 
-
-    
-
     get '/movies' do  
         if logged_in?
         @user = current_user
@@ -49,25 +46,26 @@ class MovieController < ApplicationController
     end
 
     patch '/return' do
-        if logged_in?
+        if logged_in? 
             @user = current_user
-            movie_ids = params[:user][:movie_ids]
-            
-            movie_ids.each do |id| 
-                movie = @user.movies.find_by(id: id)
-                if !movie.nil? 
-                movie.inventory += movie_ids.count{|i| i == movie.id.to_s}
-                movie.save
-                @user.movies.delete(movie)
+            if params[:user]
+                movie_ids = params[:user][:movie_ids]
+                movie_ids.each do |id| 
+                    movie = @user.movies.find_by(id: id)
+                    if !movie.nil? 
+                    movie.inventory += movie_ids.count{|i| i == movie.id.to_s}
+                    movie.save
+                    @user.movies.delete(movie)
+                    end
                 end
-            end
-            erb :"movies/show"
+                erb :"movies/show"
+            else
+                redirect "/return"
+            end 
         else
             redirect to "/login"
         end
     end
-  
-    
 
     get '/movies/:slug' do
         if  logged_in?
