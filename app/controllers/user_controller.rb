@@ -18,7 +18,7 @@ class UserController < ApplicationController
             redirect to "/users/#{current_user.slug}"
         else
             @user = User.new(params[:user])
-            if @user.save && !@user.username.none?(" ")
+            if @user.save && !@user.username.include?(" ")
             session[:user_id] = @user.id
             redirect to "/users/#{@user.slug}"
             else

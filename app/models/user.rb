@@ -6,15 +6,6 @@ class User < ActiveRecord::Base
     has_many :movies, through: :user_movies 
     has_many :reviews 
     validates_associated :reviews
-    
-
-    def vhs_count
-        self.movies.count {|movie| movie.format == "VHS"}
-    end
-
-    def dvd_count
-        self.movies.count {|movie| movie.format == "DVD"}
-    end
 
     def slug
         self.username.gsub("_", "-")
@@ -23,9 +14,5 @@ class User < ActiveRecord::Base
     def self.find_by_slug(slug)
         
         User.all.find {|user| user.slug == slug}
-    end
-
-    def movies_rented
-        Movie.all.where(user_id: self.id)
     end
 end

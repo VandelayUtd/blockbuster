@@ -10,30 +10,7 @@ class Movie < ActiveRecord::Base
         Movie.all.find{|movie| movie.slug == slug}
     end
 
-    def out_of_stock?
-        self.inventory == 0 
-    end
-
-    def self.instock 
-        Movie.all.select{|movie| movie.inventory > 0}
-    end
-
-    # def self.rented
-    #     Movie.all.where(user_id: [1..99])
-    # end
-
     def self.list
-        Movie.instock.uniq{|movie| movie.title}
+        Movie.all.uniq{|movie| movie.title}
     end
-
-
-    def vhs_count 
-        Movie.instock.count {|movie| movie.format == "VHS" && movie.title == self.title}
-    end
-
-
-    def dvd_count 
-        Movie.instock.count {|movie| movie.format == "DVD" && movie.title == self.title}
-    end
-
 end
