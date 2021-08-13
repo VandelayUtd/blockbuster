@@ -13,6 +13,6 @@ open up http://localhost:9393/ in your browser and everything should be up and r
 
 <!-- Optional -->
 ## License
-This project is open source and available under the [... License]().
+This project is open source and available under the [... License](https://opensource.org/licenses/MIT).
 
 <!-- You don't have to include all sections - just the one's relevant to your project -->
