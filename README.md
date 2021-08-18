@@ -2,10 +2,12 @@
 > A movie rental simulator
 > Live demo [_here_](https://www.example.com). <!-- If you have the project hosted somewhere, include the link here. -->
 ## Usage
+run these commands in the following order
 
-1. rake:db migrate 
-2. rake:db seed 
-3. shotgun
+1. bundle install
+2. rake:db migrate 
+3. rake:db seed 
+4. shotgun
 
 open up http://localhost:9393/ in your browser and everything should be up and running.
 

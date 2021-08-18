@@ -24,17 +24,17 @@
    <br> <%= flash[:error] %> <br> <br>
 <% end %>
 
-<% Movie.all.each do |movie| %>
-    <% if movie.title == @movie.title %>
-        <% movie.reviews.each do |review| %>
+
+        <% @movie.reviews.each do |review| %>
             <h4><%= review.user.username %></h4>
             <p>
                Rating: <%= review.rating %> Stars <br>
                Review: <%= review.comment %><br>
+               <% if review.user == current_user %>
                <a href="/reviews/<%=review.id%>/edit">Edit Review</a> 
+               <% end %>
             </p>    
-            <% end %>
-    <% end %>
+    
 <% end %> <br> <br>
 
 <a href='/reviews/new/<%= @movie.slug %>'>Leave a Review</a><br>
