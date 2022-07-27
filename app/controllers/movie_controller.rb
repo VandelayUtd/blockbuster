@@ -2,9 +2,9 @@ class MovieController < ApplicationController
 
     get '/movies' do  
         if logged_in?
-        @user = current_user
-        @movies = Movie.list.select 
-        erb :"movies/index"
+            @user = current_user
+            @movies = Movie.list.select 
+            erb :"movies/index"
         else   
             redirect to "/login"
         end
@@ -19,18 +19,6 @@ class MovieController < ApplicationController
         end
     end
 
-    # get "/movies/:slug/reviews" do
-    #     if logged_in?
-    #         @movie = Movie.find_by_slug(params[:slug])
-    #         @user = current_user
-    #         erb :"movies/movie_reviews"
-    #     else 
-    #         redirect to "/login"
-    #     end
-    # end
-
-    
-
     get '/movies/:slug' do
         if  logged_in?
             flash[:message] = "Out of Stock"
@@ -44,8 +32,7 @@ class MovieController < ApplicationController
     end
 
     post '/movies' do
-        if logged_in?
-            
+        if logged_in?    
             @user = User.find_by(id: session[:user_id])
             movie_ids = params[:user][:movie_ids]
             movie_ids.each do |movie_id|
