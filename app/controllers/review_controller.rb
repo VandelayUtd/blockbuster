@@ -66,5 +66,4 @@ class ReviewController < ApplicationController
             redirect to "/login"
         end
     end
-    
 end
